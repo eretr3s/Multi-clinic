@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% macro fila(c) %}
+  <a class="card" style="display:block;text-decoration:none;color:inherit" href="{{ url_for('detalle_cita', cita_id=c.id) }}">
+    <b>{{ c.fecha.strftime('%d/%m/%Y') }} {{ c.hora.strftime('%H:%M') }}</b> · {{ c.estado.value }}<br>
+    {{ medico_de(c).nombre }}<br><small>{{ clinica_de(c).nombre }}</small>
+  </a>
+{% endmacro %}
+{% block contenido %}
+<h1>Mis citas</h1>
+<h2>Próximas</h2>
+{% for c in proximas %}{{ fila(c) }}{% else %}<p><small>Sin citas próximas.</small></p>{% endfor %}
+<h2>Historial</h2>
+{% for c in historial %}{{ fila(c) }}{% else %}<p><small>Sin historial.</small></p>{% endfor %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Agendar cita</h1>
+
+<div class="card">
+  <h2>1. Clínica</h2>
+  {% for c in clinicas %}
+    <a class="btn {{ 'sel' if c.id == clinica_id else 'sec' }}" href="{{ url_for('agendar', clinica=c.id) }}">
+      {{ c.nombre }}<br><small>{{ c.direccion }}</small></a>
+  {% endfor %}
+</div>
+
+{% if clinica_id %}
+<div class="card">
+  <h2>2. Especialidad</h2>
+  {% for e in especialidades %}
+    <a class="btn {{ 'sel' if e == especialidad else 'sec' }}"
+       href="{{ url_for('agendar', clinica=clinica_id, especialidad=e) }}">{{ e }}</a>
+  {% endfor %}
+</div>
+{% endif %}
+
+{% if medicos %}
+<div class="card">
+  <h2>3. Médico</h2>
+  {% for m in medicos %}
+    <a class="btn sec" href="{{ url_for('calendario', medico_id=m.id) }}">{{ m.nombre }}</a>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

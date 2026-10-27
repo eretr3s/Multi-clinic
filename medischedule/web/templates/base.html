@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediSchedule</title>
+<style>
+  body{font-family:system-ui,sans-serif;margin:0;background:#f4f6f8;color:#1c2733}
+  main{max-width:480px;margin:0 auto;padding:16px 16px 80px}
+  h1{font-size:1.3rem} h2{font-size:1.05rem}
+  .card{background:#fff;border-radius:12px;padding:14px;margin:12px 0;box-shadow:0 1px 3px #0002}
+  .btn,button{display:block;width:100%;box-sizing:border-box;padding:12px;margin:8px 0;border:0;border-radius:10px;
+    background:#0b6bcb;color:#fff;font-size:1rem;text-align:center;text-decoration:none;cursor:pointer}
+  .btn.sec{background:#e3e8ee;color:#1c2733} .btn.rojo,button.rojo{background:#c62828}
+  button:disabled{background:#cfd6dd;color:#7a8794;cursor:not-allowed}
+  input{width:100%;box-sizing:border-box;padding:11px;margin:6px 0 12px;border:1px solid #c5ccd3;border-radius:8px;font-size:1rem}
+  .msg{padding:10px;border-radius:8px;margin:10px 0}
+  .ok{background:#e1f5e5}.error{background:#fde4e4}.warn{background:#fff4d6}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .grid button,.grid .btn{margin:0;padding:10px 4px}
+  nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #dde3e8;display:flex;justify-content:space-around}
+  nav a{flex:1;text-align:center;padding:14px 0;text-decoration:none;color:#0b6bcb;font-size:.9rem}
+  .sel{outline:3px solid #0b6bcb}
+  small{color:#5b6773}
+</style>
+</head>
+<body>
+<main>
+  {% for categoria, texto in get_flashed_messages(with_categories=true) %}
+    <div class="msg {{ categoria }}">{{ texto }}</div>
+  {% endfor %}
+  {% block contenido %}{% endblock %}
+</main>
+{% if session.get('paciente_id') %}
+<nav>
+  <a href="{{ url_for('inicio') }}">Inicio</a>
+  <a href="{{ url_for('agendar') }}">Agendar</a>
+  <a href="{{ url_for('mis_citas') }}">Mis citas</a>
+  <a href="{{ url_for('perfil') }}">Perfil</a>
+</nav>
+{% endif %}
+</body>
+</html>

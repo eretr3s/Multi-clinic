@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Recuperar contraseña</h1>
+<form method="post" class="card">
+  <label>Correo<input name="correo" type="email" required></label>
+  <button type="submit">Enviar contraseña temporal</button>
+  <a class="btn sec" href="{{ url_for('login') }}">Volver</a>
+</form>
+{% endblock %}

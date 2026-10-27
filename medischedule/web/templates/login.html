@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>MediSchedule</h1>
+<form method="post" class="card">
+  <label>Correo<input name="correo" type="email" required></label>
+  <label>Contraseña<input name="clave" type="password" required></label>
+  <button type="submit">Iniciar sesión</button>
+  <a class="btn sec" href="{{ url_for('registro') }}">Crear cuenta</a>
+  <a href="{{ url_for('recuperar') }}"><small>¿Olvidaste tu contraseña?</small></a>
+</form>
+{% endblock %}

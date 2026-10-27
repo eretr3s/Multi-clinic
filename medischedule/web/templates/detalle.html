@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Detalle de la cita</h1>
+<div class="card">
+  <p><b>Estado:</b> {{ cita.estado.value }}<br>
+  <b>Fecha:</b> {{ cita.fecha.strftime('%d/%m/%Y') }}<br>
+  <b>Hora:</b> {{ cita.hora.strftime('%H:%M') }}<br>
+  <b>Médico:</b> {{ medico_de(cita).nombre }} ({{ medico_de(cita).especialidad }})<br>
+  <b>Clínica:</b> {{ clinica_de(cita).nombre }}<br>
+  <small>{{ clinica_de(cita).direccion }}</small></p>
+</div>
+{% if cancelable %}
+<form method="post" action="{{ url_for('cancelar', cita_id=cita.id) }}"
+      onsubmit="return confirm('¿Cancelar esta cita?')">
+  <button class="rojo" type="submit">Cancelar cita</button>
+</form>
+{% endif %}
+<a class="btn sec" href="{{ url_for('mis_citas') }}">Volver</a>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block contenido %}
+{% if error %}
+  <h1>No se pudo agendar</h1>
+  <div class="msg error" id="mensaje-error">{{ error }}</div>
+  <a class="btn" href="{{ url_for('calendario', medico_id=medico_id) }}">Elegir otro horario</a>
+  <a class="btn sec" href="{{ url_for('inicio') }}">Ir al inicio</a>
+{% else %}
+  <h1>¡Cita confirmada!</h1>
+  <div class="card" id="cita-confirmada">
+    <p><b>{{ cita.fecha.strftime('%d/%m/%Y') }}</b> a las <b>{{ cita.hora.strftime('%H:%M') }}</b><br>
+    {{ medico_de(cita).nombre }} · {{ medico_de(cita).especialidad }}<br>
+    <small>{{ clinica_de(cita).nombre }} — {{ clinica_de(cita).direccion }}</small></p>
+  </div>
+  <a class="btn" href="{{ url_for('mis_citas') }}">Ver mis citas</a>
+  <a class="btn sec" href="{{ url_for('inicio') }}">Ir al inicio</a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Mi perfil</h1>
+<form method="post" class="card">
+  <label>Nombre<input name="nombre" value="{{ paciente.nombre }}" required></label>
+  <label>Teléfono<input name="telefono" value="{{ paciente.telefono }}"></label>
+  <label>Correo<input value="{{ paciente.correo }}" disabled></label>
+  <button type="submit">Guardar cambios</button>
+</form>
+<a class="btn rojo" href="{{ url_for('logout') }}">Cerrar sesión</a>
+{% endblock %}

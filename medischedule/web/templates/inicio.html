@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Hola, {{ g.paciente.nombre }}</h1>
+<div class="card">
+  <h2>Próxima cita</h2>
+  {% if proxima %}
+    <p><b>{{ proxima.fecha.strftime('%d/%m/%Y') }}</b> a las <b>{{ proxima.hora.strftime('%H:%M') }}</b><br>
+    {{ medico_de(proxima).nombre }} · {{ medico_de(proxima).especialidad }}<br>
+    <small>{{ clinica_de(proxima).nombre }}</small></p>
+    <a class="btn sec" href="{{ url_for('detalle_cita', cita_id=proxima.id) }}">Ver detalles</a>
+  {% else %}
+    <p>No tienes citas próximas.</p>
+  {% endif %}
+</div>
+<a class="btn" href="{{ url_for('agendar') }}">Agendar nueva cita</a>
+<div class="card">
+  <h2>Resumen</h2>
+  <p>Citas próximas: <b>{{ total_proximas }}</b><br>En el historial: <b>{{ total_historial }}</b></p>
+</div>
+{% endblock %}
