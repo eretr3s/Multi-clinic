@@ -52,7 +52,7 @@ class ClinicaCentral(_ProveedorEstatico):
 class ClinicaNorte(_ProveedorEstatico):
     CLINICA = Clinica("norte", "Clínica Norte", "Zona 3, Quetzaltenango")
     MEDICOS = (
-        Medico("norte-1", "Dr. Carlos Mejía", "Medicina General", "norte"),
+        Medico("norte-1", "Dr. Erick Tribouillier", "Medicina General", "norte"),
         Medico("norte-2", "Dra. Sofía Castillo", "Dermatología", "norte"),
     )
     HORAS = (time(9), time(10), time(11), time(15), time(16), time(17))
